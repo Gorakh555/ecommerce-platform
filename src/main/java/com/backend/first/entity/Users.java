@@ -1,9 +1,8 @@
 package com.backend.first.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.backend.first.enums.Role;
+import jakarta.persistence.*;
+import org.antlr.v4.runtime.misc.NotNull;
 
 @Entity
 public class Users {
@@ -12,7 +11,9 @@ public class Users {
     private Long id;
     private String username;
     private String password;
-
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
     public Long getId() {
         return id;
     }
@@ -37,10 +38,19 @@ public class Users {
         this.password = password;
     }
 
-    public Users(Long id, String username, String password) {
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Users(Long id, String username, String password, Role role) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.role = role;
     }
 
     public Users() {
@@ -50,8 +60,9 @@ public class Users {
     public String toString() {
         return "Users{" +
                 "id=" + id +
-                ", name='" + username + '\'' +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }

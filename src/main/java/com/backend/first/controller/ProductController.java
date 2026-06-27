@@ -10,18 +10,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/products")
 public class ProductController {
     private final ProductService productservice;
 
     public ProductController(ProductService productservice){
         this.productservice=productservice;
     }
-    @GetMapping("/products")
+    @GetMapping("/")
     public List<Product> getProduct(){
         return productservice.getProducts();
     }
 
-    @GetMapping("/")
+    @GetMapping("/session")
     public String Session(HttpServletRequest request){
         return "WELCOME"+request.getSession().getId();
     }

@@ -14,7 +14,7 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService service;
-    @PostMapping("/Register")
+    @PostMapping("/register")
     public Users register(@RequestBody Users user){
         return service.register(user);
     }
