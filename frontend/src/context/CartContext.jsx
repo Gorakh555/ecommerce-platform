@@ -1,8 +1,4 @@
-/**
- * CartContext — client-side cart for CUSTOMER role only.
- * Cart is intentionally not wired to any backend endpoint
- * (no order/cart API exists in the current backend).
- */
+
 import { createContext, useContext, useReducer, useCallback } from 'react'
 
 const CartContext = createContext(null)
