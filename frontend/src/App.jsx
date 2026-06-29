@@ -15,20 +15,7 @@ import RegisterPage from './pages/RegisterPage.jsx'
 import ProductsPage from './pages/ProductsPage.jsx'
 import SellerPage   from './pages/SellerPage.jsx'
 
-/**
- * Context tree — outermost to innermost:
- *
- * AuthProvider    — user session, role, login/logout
- * ToastProvider   — global toast notifications
- * CartProvider    — shopping cart state
- * ProductProvider — products data + filter/sort state (shared by
- *                   ProductsPage AND SellerPage — single source of truth)
- *
- * SellerProvider  — scoped inside the /seller route only.
- *                   Depends on ProductProvider (calls refreshProducts)
- *                   and ToastProvider (calls showToast).
- *                   Not mounted globally to avoid unnecessary state.
- */
+
 export default function App() {
   return (
     <AuthProvider>
