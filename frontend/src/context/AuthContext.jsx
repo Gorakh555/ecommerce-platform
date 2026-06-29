@@ -1,13 +1,4 @@
-/**
- * AuthContext
- *
- * Role strategy explained:
- * - JWTService.generateToken() stores ONLY {sub, iat, exp} — NO role claim
- * - So we persist role in localStorage alongside the token
- * - On register: backend returns Users{role} → we save it
- * - On login: we restore from localStorage (same browser) or default CUSTOMER
- * - isSeller = role === "SELLER" (matches SecurityConfig hasRole("SELLER"))
- */
+
 import { createContext, useContext, useState, useCallback, useEffect } from 'react'
 import {
   loginUser, registerUser, clearSession,
@@ -28,7 +19,7 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(false)
   const [error, setError]     = useState(null)
 
-  // Re-sync on focus (handles tab switching after token expiry)
+  
   useEffect(() => {
     function sync() { setUser(buildUserState()) }
     window.addEventListener('focus', sync)
@@ -48,7 +39,7 @@ export function AuthProvider({ children }) {
     setLoading(true); setError(null)
     try {
       await registerUser(credentials)
-      // Auto-login after registration
+     
       await loginUser({ username: credentials.username, password: credentials.password })
       setUser(buildUserState())
     } catch (err) { setError(err.message); throw err }
@@ -62,7 +53,7 @@ export function AuthProvider({ children }) {
 
   const clearError = useCallback(() => setError(null), [])
 
-  // Matches SecurityConfig: hasRole("SELLER")
+  
   const isSeller = user?.role === 'SELLER'
   const isCustomer = user?.role === 'CUSTOMER'
 
