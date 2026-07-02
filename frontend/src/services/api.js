@@ -10,7 +10,8 @@
  *   PUT   /products/{id}      SELLER only                   → void
  *   DELETE /products/{id}     SELLER only                   → void
  */
-const BASE = '/api'
+const BASE = `${import.meta.env.VITE_API_URL.replace(/\/$/, '')}`
+console.log("BASE =", BASE);
 
 export const saveToken     = (t)   => localStorage.setItem('jwt_token',  t)
 export const getToken      = ()    => localStorage.getItem('jwt_token')
